@@ -29,6 +29,9 @@ Ring2ApkConfig = [
     :entryPoint = "main.ring",
     :ringSrcDir = "ring",
 
+    # Project setup (vendored raylib/raygui): `ring2apk setup` runs this
+    :setup = "ring download_deps.ring",
+
     # App display settings
     :label = "RingRayLib",
     :orientation = "unspecified",
