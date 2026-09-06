@@ -43,6 +43,7 @@ aPackageInfo = [
 		"src/commands/run.ring",
 		"src/commands/sign.ring",
 		"src/commands/clean.ring",
+		"src/commands/setup.ring",
 		"src/commands/init.ring",
 		"src/utils/colors.ring",
 		"src/utils/json.ring",
