@@ -101,54 +101,47 @@ func cmdBuild aArgs
 
 # Compute a combined hash of all source files that affect the APK.
 # Used to detect source changes for incremental builds.
-# Includes: Ring sources, assets, Java, C/C++ sources, resources, manifest.
+# Includes: Ring sources, assets, Java, C/C++ sources,
+# resources, manifest, build config.
 func computeSourcesHash oConfig
     aFiles = []
 
-    # Ring sources
+    # Ring sources (.ring + .rh headers/constants)
     if len(oConfig[:ringSrcDir]) > 0 and dirExists(oConfig[:ringSrcDir])
-        for cFile in listAllFilesEx(oConfig[:ringSrcDir], ".ring")
-            aFiles + cFile
-        next
+        add(aFiles, listAllFilesEx(oConfig[:ringSrcDir], ".ring"), true)
+        add(aFiles, listAllFilesEx(oConfig[:ringSrcDir], ".rh"), true)
     ok
 
     # Assets
     if len(oConfig[:assetsDir]) > 0 and dirExists(oConfig[:assetsDir])
-        for cFile in listAllFilesEx(oConfig[:assetsDir], "")
-            aFiles + cFile
-        next
+        add(aFiles, listAllFilesEx(oConfig[:assetsDir], ""), true)
     ok
 
     # Java sources
     cJavaDir = joinPath([oConfig[:srcDir], "java"])
     if dirExists(cJavaDir)
-        for cFile in listAllFilesEx(cJavaDir, ".java")
-            aFiles + cFile
-        next
+        add(aFiles, listAllFilesEx(cJavaDir, ".java"), true)
     ok
 
-    # C/C++ sources (excluding vendored Ring VM)
+    # C/C++ sources
     cCppDir = joinPath([oConfig[:srcDir], "cpp"])
     if dirExists(cCppDir)
-        for cFile in listAllFilesEx(cCppDir, "")
-            # listAllFilesEx returns native separators ("\ring\" on Windows):
-            # normalize before the substring check
-            if substr(subStr(lower(cFile), char(92), "/"), "/ring/") = 0
-                aFiles + cFile
-            ok
-        next
+        add(aFiles, listAllFilesEx(cCppDir, ""), true)
     ok
 
     # Resources
     if len(oConfig[:resDir]) > 0 and dirExists(oConfig[:resDir])
-        for cFile in listAllFilesEx(oConfig[:resDir], "")
-            aFiles + cFile
-        next
+        add(aFiles, listAllFilesEx(oConfig[:resDir], ""), true)
     ok
 
     # Manifest
     if fExists("AndroidManifest.xml")
         aFiles + "AndroidManifest.xml"
+    ok
+
+    # Build config itself (name, version, permissions, targets, paths)
+    if fExists("ring2apk.ring")
+        aFiles + "ring2apk.ring"
     ok
 
     if len(aFiles) = 0
