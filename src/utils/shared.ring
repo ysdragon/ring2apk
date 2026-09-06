@@ -37,24 +37,23 @@ func sdkVersionString xVersion
 
 # List all files recursively
 func listAllFilesEx cDir, cExt
-    aResult = []
+    aOut = []
     if not dirExists(cDir)
-        return aResult
+        return aOut
     ok
 
-    aFiles = dir(cDir)
-    for aFile in aFiles
-        cPath = joinPath([cDir, aFile[1]])
-        if aFile[2]  # Directory
-            aSubFiles = listAllFilesEx(cPath, cExt)
-            for cSub in aSubFiles
-                aResult + cSub
-            next
+    nExtLen = len(cExt)
+    cSep = pathSeparator()
+    aSeen = dir(cDir)
+    for aOne in aSeen
+        cFull = cDir + cSep + aOne[1]
+        if aOne[2]  # Directory
+            add(aOut, listAllFilesEx(cFull, cExt), true)
         else  # File
-            if len(cExt) = 0 or right(cPath, len(cExt)) = cExt
-                aResult + cPath
+            if nExtLen = 0 or right(cFull, nExtLen) = cExt
+                aOut + cFull
             ok
         ok
     next
 
-    return aResult
+    return aOut
