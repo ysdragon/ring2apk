@@ -23,6 +23,7 @@ load "commands/build.ring"
 load "commands/run.ring"
 load "commands/sign.ring"
 load "commands/clean.ring"
+load "commands/setup.ring"
 
 # Ring2APK version
 $RING2APK_VERSION = "1.1.0"
@@ -62,6 +63,8 @@ func main
         cmdSign(cmdArgs)
     on "clean"
         cmdClean(cmdArgs)
+    on "setup"
+        cmdSetup(cmdArgs)
     on "create-keystore"
         cmdCreateKeystore(cmdArgs)
     on "help"
@@ -92,6 +95,7 @@ func showHelp
     ? "    " + FG_GREEN + "run" + COLOR_RESET + "             Build, install, and run on device"
     ? "    " + FG_GREEN + "sign" + COLOR_RESET + "            Sign the APK for release"
     ? "    " + FG_GREEN + "clean" + COLOR_RESET + "           Remove build artifacts"
+    ? "    " + FG_GREEN + "setup" + COLOR_RESET + "           Run the project's :setup step"
     ? "    " + FG_GREEN + "create-keystore" + COLOR_RESET + " Create a release keystore"
     ? "    " + FG_GREEN + "help" + COLOR_RESET + "            Show this help message"
     ? "    " + FG_GREEN + "version" + COLOR_RESET + "         Show version information"
