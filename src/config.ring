@@ -36,8 +36,13 @@ Ring2ApkConfig = [
     # When set, ring2apk compiles entryPoint (and all transitive loads) into
     # a .ringo object file via `ring -go -norun`, then hex-embeds it into
     # ringappcode.c/.h. The .ring sources are NOT packaged as assets.
-    :ringSrcDir = "",
-    
+        :ringSrcDir = "",
+
+    # Optional project setup step, run explicitly via `ring2apk setup`
+    # (e.g. fetch vendored deps). String or list of shell commands.
+    # Example: :setup = "ring download_deps.ring"
+    :setup = "",
+
     # Permissions
     :permissions = [],
     
