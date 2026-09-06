@@ -11,7 +11,7 @@ Build Android APKs from [Ring](https://ring-lang.github.io) applications without
 - **Optional Java** — any `src/java/**/*.java` is compiled with `javac` and dexed with `d8` into `classes.dex`.
 - **Ring-native config** — single `ring2apk.ring` hash list, defaults for every key, unknown keys preserved.
 - **Multi-ABI** — `arm64-v8a`, `armeabi-v7a`, `x86`, `x86_64` (override per-build with `--target`).
-- **Incremental** — skips when the APK exists and sources haven't changed (Murmur3 hash of Ring, Java, C/C++, assets, resources); `--rebuild` / `--force` forces a full rebuild.
+- **Incremental** — skips when the APK exists and sources haven't changed (Murmur3 hash of Ring, Java, C/C++, assets, resources, manifest, config); `--rebuild` / `--force` forces a full rebuild.
 - **Signing built in** — debug keystore auto-created at `~/.android/debug.keystore`; release signing from config or CLI, verified with `apksigner verify`. Passwords passed via temp files (`file:`), never `ps`-visible.
 - **16 KB page-size ready** — native libs linked with `-Wl,-z,max-page-size=16384` (Android 15+ / Play Console).
 
