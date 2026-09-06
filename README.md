@@ -162,6 +162,20 @@ ring2apk clean --all   # also rm *.apk, *.aab, local.properties in project root
 
 Never errors if `build/` is absent (exits `0`).
 
+### `setup` — run the project's setup step
+
+```bash
+ring2apk setup
+```
+
+Runs the optional `:setup` entry from `ring2apk.ring`: one shell command (string) or several run in order (list, first failure stops). Empty or missing → "nothing to do", exits `0`. The build never runs it automatically — on a fresh clone, run setup before the first build:
+
+```bash
+cd examples/ringraylib
+ring2apk setup    # ring download_deps.ring → src/cpp/raylib, src/cpp/raygui
+ring2apk build
+```
+
 ### `create-keystore` — make a release keystore
 
 ```bash
