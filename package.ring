@@ -88,7 +88,30 @@ aPackageInfo = [
 		"examples/raylib/src/cpp/CMakeLists.txt",
 		"examples/raylib/src/cpp/main.c",
 		"examples/raylib/src/cpp/ring_raylib.c",
-		"examples/raylib/src/java/com/ring/ringraylib/MainActivity.java"
+		"examples/raylib/src/java/com/ring/ringraylib/MainActivity.java",
+
+		# WebView example
+		"examples/webview/.gitignore",
+		"examples/webview/README.md",
+		"examples/webview/img/nota-screenshot.png",
+		"examples/webview/res/mipmap-hdpi/ic_launcher.png",
+		"examples/webview/res/mipmap-mdpi/ic_launcher.png",
+		"examples/webview/res/mipmap-xhdpi/ic_launcher.png",
+		"examples/webview/res/mipmap-xxhdpi/ic_launcher.png",
+		"examples/webview/res/mipmap-xxxhdpi/ic_launcher.png",
+		"examples/webview/res/values/colors.xml",
+		"examples/webview/res/values/strings.xml",
+		"examples/webview/res/values/styles.xml",
+		"examples/webview/ring/main.ring",
+		"examples/webview/ring/webview.ring",
+		"examples/webview/ring/src/assets.ring",
+		"examples/webview/ring/src/webview.rh",
+		"examples/webview/ring/src/webview.ring",
+		"examples/webview/ring2apk.ring",
+		"examples/webview/src/cpp/CMakeLists.txt",
+		"examples/webview/src/cpp/main.c",
+		"examples/webview/src/java/io/github/ysdragon/webview/MainActivity.java",
+		"examples/webview/src/proguard-webview.pro"
 	],
 	:ringfolderfiles = 	[
 
