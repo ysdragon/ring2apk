@@ -3,10 +3,10 @@ load "libcurl.ring"
 load "ziplib.ring"
 
 func main
-	download("https://github.com/raysan5/raylib/archive/refs/tags/5.5.zip",
-	     "src/cpp", "raylib-5.5", "raylib")
-	download("https://github.com/raysan5/raygui/archive/refs/tags/5.0.zip",
-	     "src/cpp", "raygui-5.0", "raygui")
+	download("https://github.com/raysan5/raylib/archive/refs/tags/5.0.zip",
+	     "src/cpp", "raylib-5.0", "raylib")
+	download("https://github.com/raysan5/raygui/archive/refs/tags/4.0.zip",
+	     "src/cpp", "raygui-4.0", "raygui")
 	? "Done."
 
 func download cUrl, cDestParent, cExtractName, cTargetName

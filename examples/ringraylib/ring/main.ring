@@ -5,7 +5,12 @@
 
 load "raylib.ring"
 
-InitWindow(0, 0, "Ring Raylib Demo")
+if isAndroid()
+    InitWindow(0, 0, "Ring Raylib Demo")
+else
+    SetConfigFlags(FLAG_WINDOW_RESIZABLE)
+    InitWindow(0, 0, "Ring Raylib Demo")
+ok
 screenW = GetScreenWidth()
 screenH = GetScreenHeight()
 if screenW = 0 or screenH = 0
@@ -13,13 +18,13 @@ if screenW = 0 or screenH = 0
     screenH = GetMonitorHeight(0)
 ok
 if screenW = 0 or screenH = 0
-    screenW = 720
-    screenH = 1280
-ok
-if screenW > screenH
-    nTmp = screenW
-    screenW = screenH
-    screenH = nTmp
+    if isAndroid()
+        screenW = 720
+        screenH = 1280
+    else
+        screenW = 1280
+        screenH = 720
+    ok
 ok
 
 SetTargetFPS(60)
@@ -82,11 +87,6 @@ while !WindowShouldClose()
     animTime += GetFrameTime()
     screenW = GetScreenWidth()
     screenH = GetScreenHeight()
-    if screenW > screenH
-        nTmp = screenW
-        screenW = screenH
-        screenH = nTmp
-    ok
     uiScale = screenW / 720.0
     tmpScale = screenH / 1280.0
     if tmpScale < uiScale
@@ -173,7 +173,7 @@ end
 CloseWindow()
 
 func drawMenu()
-    title = "Ring Raylib 5.5"
+    title = "Ring Raylib 5.0"
     subTitle = "for Android"
     tw = MeasureText(title, ui(42))
     DrawText(title, (screenW - tw)/2, screenH*0.18, ui(42), DARKBLUE)
@@ -319,8 +319,8 @@ func drawInfo()
 
     info = [
         "Ring " + version(),
-        "Raylib 5.5",
-        "Raygui 5.0",
+        "Raylib 5.0",
+        "Raygui 4.0",
         "Screen: " + screenW + "x" + screenH,
         "FPS: " + GetFPS(),
         "Touch points: " + touchCount,
