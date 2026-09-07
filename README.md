@@ -68,7 +68,8 @@ On Windows, use the shell-native verb: `Get-Content ring\main.ring` in PowerShel
 | Example | Description |
 |---|---|
 | [hello](examples/hello/) | Hello world — the default `ring2apk init` template |
-| [ringraylib](examples/ringraylib/) | raylib 5.5 + raygui 5.0 multi-screen demo (touch/gestures, GUI controls) — fullscreen immersive, scales to any screen size, custom `AndroidManifest.xml` + `MainActivity` |
+| [ringraylib](examples/ringraylib/) | raylib 5.0 + raygui 4.0 multi-screen demo (touch/gestures, GUI controls) — fullscreen immersive, scales to any screen size, custom `AndroidManifest.xml` + `MainActivity` |
+| [webview](examples/webview/) | Nota notes app using [Ring WebView](https://github.com/ysdragon/webview) (glassmorphism, Ring owns state / JS renders, `notes.db` persistence, rotation-safe) |
 
 ## How it works
 
