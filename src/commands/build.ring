@@ -609,9 +609,12 @@ func compileJava oBuild
     aClasses = listAllFilesEx(cClassDir, ".class")
     nMax = len(aClasses)
     for i = 1 to nMax
-        # Escape '$' (anonymous/inner class files like MainActivity$1.class)
-        # so the shell does not expand $1/$10/... inside the double quotes.
-        cClassFiles += '"' + subStr(aClasses[i], "$", char(92) + "$") + '" '
+        if isWindows()
+            cClassFiles += '"' + aClasses[i] + '" '
+        else
+            # Escape '$' so bash does not expand $1/$10 inside double quotes
+            cClassFiles += '"' + subStr(aClasses[i], "$", char(92) + "$") + '" '
+        ok
     next
 
     cCmd = '"' + oBuild.env.d8 + '" --min-api ' + oBuild.config[:minSdk] +
