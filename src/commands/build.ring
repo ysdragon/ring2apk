@@ -593,7 +593,7 @@ func compileJava oBuild
         cFileList += '"' + aJavaFiles[i] + '" '
     next
 
-    cCmd = '"' + cJavac + '" -source 11 -target 11 -d "' + cClassDir +
+    cCmd = '"' + cJavac + '" --release 11 -d "' + cClassDir +
            '" -classpath "' + cAndroidJar + '" ' + cFileList
     if shellExec(cCmd) != 0
         logError("Java compilation failed!")
