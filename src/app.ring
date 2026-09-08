@@ -26,7 +26,7 @@ load "commands/clean.ring"
 load "commands/setup.ring"
 
 # Ring2APK version
-$RING2APK_VERSION = "1.2.0"
+$RING2APK_VERSION = "1.2.2"
 
 # Ring2APK verbose flag
 $RING2APK_VERBOSE = false
